@@ -1,0 +1,23 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        char[] charArray = s.toCharArray();
+        String longestSubString = null;
+        int longestSubStringlength = 0;
+        LinkedHashMap<Character,Integer> Lhasmap = new LinkedHashMap<Character,Integer>();
+        for(int i=0;i<charArray.length;i++){
+            char ch = charArray[i];
+            if(!Lhasmap.containsKey(ch)){
+                Lhasmap.put(ch,i);
+            }
+            else{
+                i = Lhasmap.get(ch);
+                Lhasmap.clear();
+            }
+            if(longestSubStringlength<Lhasmap.size()){
+                longestSubStringlength = Lhasmap.size();
+                longestSubString = Lhasmap.keySet().toString();
+            }
+        }
+        return longestSubStringlength;
+    }
+}
